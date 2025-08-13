@@ -49,18 +49,15 @@ proc visualLen*(s: string): int =
       inc(i)
   
 proc newBranch*(
-    name:           string        = "",
     displayConfig:  DisplayConfig = newDisplayConfig(),
     style:          BranchStyle   = unicodeStyle
 ): Branch = 
   result = Branch(
-    branchName:           name,
+    branchName:           "",
     branchIndentLevel:    0,
     branchDisplayConfig:  displayConfig,
     branchStyle:          style
   )
-
-  echo fmt"{name}"
 
 proc enterBranch*(
     parent: Branch,
@@ -87,12 +84,9 @@ proc leaveBranch*(
 proc formatBranchLine*(
     parent: Branch,
     text:   string,
-    prefix: string = "├─"
+    prefix: string = "├─ "
 ): string =
-  if text == "": 
-    fmt"{formatIndent(parent.branchIndentLevel)}{prefix}"
-  else:
-    fmt"{formatIndent(parent.branchIndentLevel)}{prefix} {text}"
+  fmt"{formatIndent(parent.branchIndentLevel)}{prefix}{text}"
 
 proc formatTableLine*(
     parent: Branch,
@@ -106,19 +100,19 @@ proc formatTableMultiLine*(
     parent: Branch,
     lines:  string
 ): string =
-  let maxLineWidht = parent.branchDisplayConfig.terminalSize.width - 3 - parent.branchIndentLevel * 3
+  let maxLineWidth = parent.branchDisplayConfig.terminalSize.width - 3 - parent.branchIndentLevel * 3
   let lineList = lines.splitLines()
   var isFirstLine = true
 
   for origLine in lineList:
     var line = origLine.strip()  # можно убрать, если не нужно
 
-    # Разбиваем строку на строки длины <= maxLineWidht
+    # Разбиваем строку на строки длины <= maxLineWidth
     var pos = 0
     let len = line.len
 
     while pos < len:
-      let End = min(pos + maxLineWidht - 1, len - 1)
+      let End = min(pos + maxLineWidth - 1, len - 1)
 
       # Ищем последний пробел в текущем диапазоне
       var breakPos = -1
@@ -194,12 +188,13 @@ proc formatTableHeader*(
   )}╮"""
 
 proc formatTableFooter*(parent: Branch): string =
-  result = parent.formatBranchLine("") & "─".repeat(
+  result = parent.formatBranchLine("", "├─") & "─".repeat(
     parent.branchDisplayConfig.terminalSize.width - 3 - parent.branchIndentLevel * 3
   ) & "╯"
 
 when isMainModule:
-  let root = newBranch("Project compilation")
+  let root = newBranch()
+  echo "Compilation"
 
   let lex = root.enterBranch("Lexical analysis")
   echo lex.formatBranchLine("Tokenization of source code")
