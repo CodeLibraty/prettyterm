@@ -9,9 +9,9 @@
 #  MIT © 2025 CodeLibraty Foundation | https://codelibraty.vercel.app
 # 
 
-import src/[
-  colors, commonTypes,
-  themeConfig, stylish,
+import source/[
+  colors,       commonTypes,
+  themeConfig,  stylish,
   prettyLogger, treePrinter
 ]
 

@@ -167,23 +167,26 @@ logger.destroyLogger("./app.log", writeToFile = true)
 
 ```
 prettyterm/
-├── prettyterm.nim        # Основной модуль
-├── prettyterm.nimble    # Файл пакета Nimble
-├── src/
-│   ├── colors.nim       # ANSI цвета и стили
-│   ├── commonTypes.nim  # Базовые типы
-│   ├── themeConfig.nim  # Конфигурация тем
-│   ├── stylish.nim      # Стилизация текста
-│   ├── treePrinter.nim  # Древовидный принтер
-│   └── prettyLogger.nim # Система логирования
-├── LICENSE              # MIT лицензия
-└── README.md           # Документация
+├── prettyterm.nimble    # Nimble package file
+├── src/                 # package source
+│   ├── prettyterm.nim   # Main module
+│   │   source/          # All source files
+│   │   ├── colors.nim       # ANSI colors and styles
+│   │   ├── commonTypes.nim  # Basic types
+│   │   ├── themeConfig.nim  # Theme configuration
+│   │   ├── stylish.nim      # Text styling
+│   │   ├── treePrinter.nim  # Tree printer
+│   │   └── prettyLogger.nim # Logging system
+├── LICENSE              # MIT license
+└── README.md           # Documentation
+└── README.ru.md        # Russion version Documentation
 ```
+
 
 ## Требования
 
 - Nim >= 1.6.0
-- Современный терминал с поддержкой ANSI escape-кодов
+- Современный терминал с поддержкой ANSI escape-кодов и юникода
 
 ## Лицензия
 
