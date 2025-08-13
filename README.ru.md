@@ -191,8 +191,7 @@ MIT License - см. файл [LICENSE](LICENSE)
 
 ## Автор
 
-CodeLibraty Foundation  
-https://codelibraty.tk
+[CodeLibraty Foundation](https://codelibraty.tk)
 
 ## Вклад в проект
 
