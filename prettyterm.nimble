@@ -7,7 +7,7 @@
 #
 
 # Package
-version       = "0.2.5"
+version       = "1.0.0"
 author        = "CodeLibraty Fondation"
 description   = "Make your terminal interfaces prettier!"
 license       = "MIT"
